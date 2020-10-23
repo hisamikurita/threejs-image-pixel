@@ -1,7 +1,7 @@
 export default class Stage {
     constructor() {
         this.renderParam = {
-            clearColor: 0x333333,
+            clearColor: 0x000000,
             width: window.innerWidth,
             height: window.innerHeight,
         };
@@ -12,7 +12,7 @@ export default class Stage {
             lookAt: new THREE.Vector3(0, 0, 0),
             x: 0,
             y: 0,
-            z: 1400,
+            z: 2400,
         };
 
         this.scene = null;
@@ -35,8 +35,8 @@ export default class Stage {
     }
 
     _setDev() {
-        this.scene.add(new THREE.GridHelper(5000, 100));
-        this.scene.add(new THREE.AxesHelper(500));
+        // this.scene.add(new THREE.GridHelper(5000, 100));
+        // this.scene.add(new THREE.AxesHelper(500));
 
         this.orbitcontrols = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 
@@ -74,9 +74,11 @@ export default class Stage {
             this.camera.lookAt(this.cameraParam.lookAt);
         }
 
-        this.camera.aspect = this.renderParam.width / this.renderParam.height;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setSize(this.renderParam.width, this.renderParam.height);
+        this.renderer.setSize(width, height);
     }
 
     _render() {
